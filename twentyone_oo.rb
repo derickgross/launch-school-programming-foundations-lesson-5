@@ -159,11 +159,12 @@ class Game
   def start
     @deck = Deck.new
     @human = Player.new
+    welcome_message
     play
+    goodbye_message
   end
 
   def play
-    welcome_message
     loop do
       @computer = Dealer.new
       deal_initial_cards
@@ -174,7 +175,6 @@ class Game
       show_result
       play_again? ? reset : break
     end
-    goodbye_message
   end
 
   def welcome_message
