@@ -38,9 +38,7 @@ class Participant
     value = 0
     aces = 0
     hand.each do |card|
-      if card[1] == "A"
-        aces += 1
-      end
+      aces += 1 if card[1] == "A"
     end
 
     hand.each do |card|
@@ -55,16 +53,14 @@ class Participant
 
   def calculate_card_value(card)
     rank = card[1]
-    value = 0
     case
     when ["J", "Q", "K"].include?(rank)
-      value = 10
+      10
     when rank == "A"
-      value = 11
+      11
     when *(2..10).include?(rank.to_i)
-      value = rank.to_i
+      rank.to_i
     end
-    value
   end
 
   def display_hand_value
@@ -80,13 +76,7 @@ class Participant
   end
 
   def game_over?
-    if busted?
-      true
-    elsif twenty_one?
-      true
-    else
-      false
-    end
+    busted? || twenty_one?
   end
 end
 
